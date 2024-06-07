@@ -1,3 +1,7 @@
+__pycache__/
+*.py[cod]
+
 envs/
 venv/
 src/user.json
+*/__pycache__/
