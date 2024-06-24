@@ -47,4 +47,3 @@ def get_mail_service_token(message: Message, bot: TeleBot, service_key: str, ser
     except Exception as e:
         logger.exception(e)
 
-

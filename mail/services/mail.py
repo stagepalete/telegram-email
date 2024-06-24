@@ -40,7 +40,11 @@ class Gmail(Mail):
             mailbox = []
             with self.imap_server.login(self.email_address, self.email_password, 'Inbox') as mb:
                 for msg in mb.fetch(limit=5, reverse=True, mark_seen=False):
-                    mailbox.append(f'{msg.subject} {msg.date} {msg.flags} {msg.text}')
+                    message = f'{msg.subject} {msg.date} {msg.flags} {msg.text}'
+                    if len(message) > 4096:
+                        for x in range(0, len(message), 4095):
+                            mailbox.append(message[x:x+4095])
+                            break
             return mailbox
         except Exception as e:
             print(e)
